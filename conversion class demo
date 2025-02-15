@@ -1,0 +1,43 @@
+class Conversions
+{
+ 
+  double convertLength(double l)
+  {  
+    double remainder = 0.0;
+    if (l<0.5*CYB_TRU_LENGTH_IN_METRES)
+    {
+      l /= GRONK_JUMP_IN_METRES;
+      println(l);
+    }
+    
+    else if (l>0.5*CYB_TRU_LENGTH_IN_METRES
+    && l<0.5*OHIO_WIDTH_IN_METRES)
+    {
+      l/= CYB_TRU_LENGTH_IN_METRES;
+      println(l);
+    }
+     
+    else
+    {
+      l/= OHIO_WIDTH_IN_METRES;
+      println(l);
+    }
+
+         
+    double result = Math.round(l*100.0)/100.0;
+    return result;
+  }
+  
+  double convertWeight(double w)
+  {
+    w = 0.0;
+    return w;
+    
+  }
+  
+  double convertTime(double t)
+  {
+    t =  0.0;
+    return t;
+  }
+}

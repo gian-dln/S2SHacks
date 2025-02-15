@@ -1,0 +1,17 @@
+// length
+final double GRONK_JUMP_IN_METRES = 1.016;
+final double CYB_TRU_LENGTH_IN_METRES = 5.683;
+final int OHIO_WIDTH_IN_METRES = 355000;
+
+//mass
+final double PRIME_MASS_IN_KG = 0.6;
+final int MR_BEAST_MASS_IN_KG = 85;
+final int SHREK_MASS_IN_KG = 204;
+
+//time
+final int KSI_SONG_IN_SECONDS = 160;
+final int ARCANE_RUNTIME_IN_SECONDS = 44340;
+final double ARCANE_RUNTIME_IN_HOURS = 12.3167;
+final int PG_AGE_IN_SECONDS = 1198368000;
+final int PG_AGE_IN_HOURS = 394470;
+final int PG_AGE_IN_YEARS = 45;

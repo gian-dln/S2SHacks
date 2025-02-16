@@ -1,0 +1,215 @@
+import java.text.DecimalFormat;
+class Conversions
+
+{
+ String temp;
+  String convertLength(double userInput, int unitSetting) 
+  {  
+    int mainUnit;
+    double remainder;
+    int divider = 1;
+    String result;    
+    
+    
+    
+    switch (unitSetting) // unit selection
+    {
+      case 0:
+      divider = 1;
+      break;
+      case 1: 
+      divider = METRES;
+      break;
+      case 2:
+      divider = KILOMETRES;
+      break;
+    }
+     
+    if (userInput>Integer.MAX_VALUE || userInput<0) 
+      result = "What a MASSIVE number, you know what else is massive? LOW TAPER FADEEE! (Overflow error)";
+    
+    else if (userInput<(CYB_TRU_LENGTH_IN_CM/divider)) //input: 0 to Cybertruck (always gronks)
+    {
+      temp = String.format("%.2f", userInput / GRONK_JUMP_IN_CM*divider); 
+      result = temp + " Baby Gronk vertical" + (temp.equals("1") ? "." : "s.");
+    }
+        
+    else if (userInput<(OHIO_WIDTH_IN_CM/divider)) //input: Cybertruck to Ohio
+    {
+      mainUnit = (int)(userInput/(CYB_TRU_LENGTH_IN_CM/divider));
+      remainder = ((userInput%(CYB_TRU_LENGTH_IN_CM/divider))/(GRONK_JUMP_IN_CM/divider));
+      String formattedRemainder = String.format("%.2f", remainder);
+      temp = Integer.toString(mainUnit);
+      result = temp + " Cybertruck" + (temp.equals("1") ? " " : "s ") + "and " + formattedRemainder + " Baby Gronk verticals.";
+      //result = ((temp.equals("0") ? "" : temp + " Cybertruck" +  (temp.equals("1") ? " " : "s ") + "and ")) + formattedRemainder + " Baby Gronk vertical" + (formattedRemainder.equals("1") ? "." : "s." ); // baby gronk(s)
+    }
+    
+     //input: Ohio+
+    else
+    {
+      mainUnit = (int)(userInput/(OHIO_WIDTH_IN_CM/divider));
+      temp = Integer.toString(mainUnit);
+      result = temp + " Ohio width" + (temp.equals("1") ? "" : "s");
+    
+      remainder = ((userInput%(OHIO_WIDTH_IN_CM/divider)) / (CYB_TRU_LENGTH_IN_CM / divider));
+      mainUnit = (int)(remainder);
+      if (mainUnit > 0) 
+      {
+        temp = Integer.toString(mainUnit);
+        result += ", " + temp + " Cybertruck" + (temp.equals("1") ? "" : "s");
+        println(remainder%(CYB_TRU_LENGTH_IN_CM/divider));
+        remainder = (remainder%(CYB_TRU_LENGTH_IN_CM/divider)) / (GRONK_JUMP_IN_CM/divider);
+        println(remainder + " gronks");
+      }
+      else 
+      {
+      remainder = ((userInput%(OHIO_WIDTH_IN_CM/divider)) / (GRONK_JUMP_IN_CM / divider));
+      String formattedRemainder = String.format("%.2f", remainder);
+      result += " and " + formattedRemainder + " Baby Gronk verticals";
+      }
+      result+=".";
+    } 
+    return result;
+  }
+  
+  String convertWeight(double w, int unitSetting)
+  {
+    int mainUnit;
+    int divider = 1;
+    double remainder;
+    String result;
+    if (unitSetting == 1) //unit selection
+    {
+      divider = KG;
+    }
+    else
+    {
+      divider = 1;
+    }
+    
+    if (w>Integer.MAX_VALUE || w<0) //input: Overflow error
+    {
+      result = "What a MASSIVE number, you know what else is massive? LOW TAPER FADEEE! (Overflow error)";
+    }
+    else if (w<0.5*(PRIME_MASS_IN_G/divider))
+    {
+      mainUnit = 0;
+      remainder = w*divider;
+       String formattedRemainder = String.format("%.2f", remainder);
+       result = Integer.toString(mainUnit) + " Prime bottle(s) and " 
+       + formattedRemainder + " g";
+    }
+    else if (w<0.5*(MR_BEAST_MASS_IN_G/divider))
+    {
+      mainUnit = (int)(w/(PRIME_MASS_IN_G/divider));
+      remainder = ((w%(PRIME_MASS_IN_G/divider)));
+      if (unitSetting == 1)
+      {
+        remainder *= divider;
+      }
+      String formattedRemainder = String.format("%.2f", remainder);
+        result = Integer.toString(mainUnit) + " Prime bottle(s) and " 
+        + formattedRemainder + " g";
+    }
+    else if (w>0.5*(MR_BEAST_MASS_IN_G/divider)
+    && w<0.5*(SHREK_MASS_IN_G/divider))
+    {
+      mainUnit = (int)(w/(MR_BEAST_MASS_IN_G/divider));
+      remainder = ((w%(MR_BEAST_MASS_IN_G/divider))/((PRIME_MASS_IN_G/divider)));
+      String formattedRemainder = String.format("%.2f", remainder);
+        result = Integer.toString(mainUnit) + " Mr beast(s) and " 
+        + formattedRemainder + " Prime bottle(s)";
+    }
+    else
+    {
+      mainUnit = (int)(w/(SHREK_MASS_IN_G/divider));                                      
+      remainder = ((w%((SHREK_MASS_IN_G/divider))/ (MR_BEAST_MASS_IN_G/divider)));
+      String formattedRemainder = String.format("%.2f", remainder);
+      result = Integer.toString(mainUnit) + " Shrek(s) and "
+      + formattedRemainder + " Mr beast(s)";
+    }
+    
+    
+    return result;
+  }
+  
+  String convertTime(double t, int unitSetting)
+  {
+    int mainUnit;
+    int divider = 1;
+    double remainder;
+    String result;
+    switch (unitSetting) // unit selection
+    {
+      case 0:
+      divider = 1;
+      break;
+      
+      case 1: 
+      divider = MINUTES;
+      break;
+      
+      case 2:
+      divider = DAYS;
+      break;
+      
+      case 3:
+      divider = MONTHS;
+      break;
+      
+      case 4:
+      divider = YEARS;
+      break;
+      
+    }
+    if (t>Integer.MAX_VALUE || t<0) //input: Overflow error
+    {
+      result = "What a MASSIVE number, you know what else is massive? LOW TAPER FADEEE! (Overflow error)";
+    }
+    
+    // assume input is in seconds
+    else if (t<0.5*(KSI_SONG_IN_SECONDS/divider))
+    {
+      mainUnit = 0;
+      remainder = t;
+      if (unitSetting == 1) // minutes to seconds
+      {
+        remainder *= divider;
+      }
+      String formattedRemainder = String.format("%.2f", remainder);
+      result = mainUnit + " Thick of it(s) and " + formattedRemainder + " sec";
+    }
+    
+    else if (t < 0.5 * (ARCANE_RUNTIME_IN_SECONDS/divider))
+    {
+        mainUnit = (int) (t/(KSI_SONG_IN_SECONDS/divider));
+        remainder = (t%(KSI_SONG_IN_SECONDS/divider));
+        if (unitSetting == 1) //minutes to seconds
+      {
+        remainder *= divider;
+      }
+        String formattedRemainder = String.format("%.2f", remainder);
+        result = mainUnit + " Thick of it(s) and " + formattedRemainder + " sec";
+    }
+    
+    else if (t>0.5*(ARCANE_RUNTIME_IN_SECONDS/divider)
+    && t<0.5*(PG_AGE_IN_SECONDS/divider))
+    {
+      mainUnit = (int) (t / (ARCANE_RUNTIME_IN_SECONDS / divider));
+      remainder = (t %(ARCANE_RUNTIME_IN_SECONDS / divider)/(KSI_SONG_IN_SECONDS/divider));
+      String formattedRemainder = String.format("%.2f", remainder);
+      result = mainUnit + " Arcane runtime(s) and " + formattedRemainder + " Thick of it(s)";
+    }
+    else
+    {
+      mainUnit = (int) (t/(PG_AGE_IN_SECONDS/divider));
+      remainder = ((t % (PG_AGE_IN_SECONDS/divider)));
+      String formattedRemainder = String.format("%.2f", remainder);
+      result = mainUnit + " Peter Griffin lifespan(s) and " + formattedRemainder + " years";
+    }
+
+    return result;
+    
+  }
+
+}

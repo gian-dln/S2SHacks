@@ -108,13 +108,23 @@ class Conversions
     //Shrek + (Shreks, Mr. Beasts and Primes)
     else
     {
-      //
-      mainUnit = (int)(w/(SHREK_MASS_IN_G/divider));  
+      //Shreks
+      mainUnit = (int)(w / (SHREK_MASS_IN_G/divider));  
       result = mainUnit + " Shrek(s)";
-      remainder = ((w%((SHREK_MASS_IN_G/divider))/ (MR_BEAST_MASS_IN_G/divider)));
+      
+      //Mr. Beasts
+      w %= (SHREK_MASS_IN_G / divider);
+      mainUnit = (int) w / (MR_BEAST_MASS_IN_G/divider);
+      
+      //Primes
+      remainder = ((w) % (MR_BEAST_MASS_IN_G/divider)) / (PRIME_MASS_IN_G/divider);
       String formattedRemainder = String.format("%.2f", remainder);
-      result = Integer.toString(mainUnit) + " Shrek(s) and "
-      + formattedRemainder + " Mr beast(s)";
+      if (mainUnit > 0 && remainder > 0)
+        result += ", " + mainUnit + " Mr. Beast(s) and " + formattedRemainder + " Prime bottle(s)";
+      else if (mainUnit > 0)
+        result += " and " + mainUnit + " Mr. Beast(s)";
+      else if (remainder > 0)
+        result += " and " + formattedRemainder + " Prime bottle(s)";                       
     }
     
     
